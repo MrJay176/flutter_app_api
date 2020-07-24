@@ -53,13 +53,13 @@ class FootballService {
 
   //Since Http Request are asyncronous you have to use a future
   Future<List<data>> getListTomorrowMatches(String user, String Token,
-      String t) {
+      String t) async {
     //then execute once our http returns an actual response
     List<data> list;
     var data_;
     https: //api.soccersapi.com/v2.2/livescores/?user={YOUR_USER_NAME}&token={YOUR_TOKEN}&t=today
 
-    return http.get(
+    return await http.get(
         API + 'livescores/?user=' + user + "&token=" + Token + "&t=" + t,
         headers: headers).then((value) {
       if (value.statusCode == 200) {

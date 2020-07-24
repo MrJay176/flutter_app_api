@@ -8,8 +8,8 @@ import 'awayFile.dart';
 class data{
 
   String id;
-  String status;
-  String statusName;
+  dynamic status;
+  dynamic statusName;
   dynamic statusPeriod;
   dynamic pitch;
   dynamic refereeId;

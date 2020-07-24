@@ -38,6 +38,34 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      title: 'Flutter Demo',
+      debugShowCheckedModeBanner:false,
+      routes:{
+        '/second':(context)=>Today(),
+      },
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home:Home()
+    );
+  }
+}
+
+class Home extends StatefulWidget{
+
+  @override
+  State<StatefulWidget> createState() {
+    return HomeClass();
+  }
+}
+
+class HomeClass extends State<Home>{
+
   int _currentPage =0;
   final PageController _pageController = PageController(
       initialPage:0
@@ -69,20 +97,12 @@ class _MyAppState extends State<MyApp> {
     _pageController.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
-
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner:false,
-      routes:{
-        '/second':(context)=>Today(),
-      },
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Container(
+    // TODO: implement build
+    return
+      Container(
         child:Scaffold(
           body:SingleChildScrollView(
             child: Column(
@@ -129,20 +149,36 @@ class _MyAppState extends State<MyApp> {
                         child:GestureDetector(
                           onTap:(){
                             Navigator.of(context).push(new MaterialPageRoute(builder:(context){
-                              return Today();
+                              return Leagues();
                             }));
                           },
                           child: new Card(
-                            child:Container(
-                                height:200.0,
-                                width:200.0,
-                                decoration:BoxDecoration(
-                                  shape:BoxShape.rectangle,
-                                  color:Colors.white,
-                                  image:DecorationImage(
-                                    image:AssetImage('assets/images/footballfour.jpg'),
+                            child:Stack(
+                              children: <Widget>[
+                                Container(
+                                    height:200.0,
+                                    width:200.0,
+                                    decoration:BoxDecoration(
+                                      shape:BoxShape.rectangle,
+                                      color:Colors.white,
+                                      image:DecorationImage(
+                                        image:AssetImage('assets/images/footballfour.jpg'),
+                                      ),
+                                    )
+                                ),
+                                Container(
+                                  height:230.0,
+                                  alignment:Alignment.bottomCenter,
+                                  child: Text(
+                                    'League Details',
+                                    style:TextStyle(
+                                     fontWeight:FontWeight.normal,
+                                     color: Colors.black,
+                                     fontSize:15.0
+                                    ),
                                   ),
                                 )
+                              ],
                             ),
                           ),
                         )
@@ -151,87 +187,133 @@ class _MyAppState extends State<MyApp> {
                     SizedBox(width:10.0),
 
                     Flexible(
-                    child:GestureDetector(
-                      onTap:(){
-                        Navigator.of(context).push(new MaterialPageRoute(builder:(context){
-                          return Today();
-                        }));
-                      },
-                      child: new Card(
-                            child:Container(
-                                height:200.0,
-                                width:200.0,
-                                decoration:BoxDecoration(
-                                  shape:BoxShape.rectangle,
-                                  color:Colors.white,
-                                  image:DecorationImage(
-                                    image:AssetImage('assets/images/footballfour.jpg'),
-                                  ),
+                        child:GestureDetector(
+                          onTap:(){
+                            Navigator.of(context).push(new MaterialPageRoute(builder:(context){
+                              return Today();
+                            }));
+                          },
+                          child: new Card(
+                            child:Stack(
+                              children: <Widget>[
+                                Container(
+                                    height:200.0,
+                                    width:200.0,
+                                    decoration:BoxDecoration(
+                                      shape:BoxShape.rectangle,
+                                      color:Colors.white,
+                                      image:DecorationImage(
+                                        image:AssetImage('assets/images/footballthree.jpg'),
+                                      ),
+                                    )
+                                ),
+                                Container(
+                                  height:230.0,
+                                  alignment:Alignment.bottomCenter,
+                                  child:Text(
+                                    'Today Matches',
+                                    style:TextStyle(
+                                        fontWeight:FontWeight.normal,
+                                        color: Colors.blue,
+                                        fontSize:15.0
+                                    ),
+                                  )
                                 )
+                              ],
                             ),
                           ),
-                    )
+                        )
                     ),
                   ],
                 ),
                 new Row(
                   children: <Widget>[
                     new Flexible(
-                    child:GestureDetector(
-                      onTap:(){
-                        Navigator.of(context).push(new MaterialPageRoute(builder:(context){
-                          return Yesterday();
-                        }));
-                      },
-                      child: new Card(
-                        child:Container(
-                          height:200.0,
-                          width:200.0,
-                          decoration:BoxDecoration(
-                              shape:BoxShape.rectangle,
-                              color:Colors.white,
-                              image:DecorationImage(
-                                  image:AssetImage('assets/images/footballfour.jpg')
+                      child:GestureDetector(
+                        onTap:(){
+                          Navigator.of(context).push(new MaterialPageRoute(builder:(context){
+                            return Yesterday();
+                          }));
+                        },
+                        child: new Card(
+                          child:Stack(
+                            children: <Widget>[
+                              Container(
+                                  height:200.0,
+                                  width:200.0,
+                                  decoration:BoxDecoration(
+                                    shape:BoxShape.rectangle,
+                                    color:Colors.white,
+                                    image:DecorationImage(
+                                      image:AssetImage('assets/images/footballtwo.jpg'),
+                                    ),
+                                  )
+                              ),
+                              Container(
+                                height:230.0,
+                                alignment:Alignment.bottomCenter,
+                                  child:Text(
+                                    'Yesterday Matches',
+                                    style:TextStyle(
+                                        fontWeight:FontWeight.normal,
+                                        color: Colors.green,
+                                        fontSize:15.0
+                                    ),
+                                  )
                               )
+
+                            ],
                           ),
                         ),
                       ),
                     ),
-                    ),
                     SizedBox(width:10.0),
                     new Flexible(
-                    child:GestureDetector(
-                      onTap:(){
-                        Navigator.of(context).push(new MaterialPageRoute(builder:(context){
-                          return Play();
-                        }));
-                      },
-                      child: new Card(
-                        child:Container(
-                            height:200.0,
-                            width:200.0,
-                            decoration:BoxDecoration(
-                              shape:BoxShape.rectangle,
-                              color:Colors.white,
-                              image:DecorationImage(
-                                image:AssetImage('assets/images/footballfour.jpg'),
-                              ),
-                            )
-                        ),
-                      ),
-                    )
+                        child:GestureDetector(
+                          onTap:(){
+                            Navigator.of(context).push(new MaterialPageRoute(builder:(context){
+                              return Play();
+                            }));
+                          },
+                          child: new Card(
+                            child:Stack(
+                              children: <Widget>[
+                                Container(
+                                    height:200.0,
+                                    width:200.0,
+                                    decoration:BoxDecoration(
+                                      shape:BoxShape.rectangle,
+                                      color:Colors.white,
+                                      image:DecorationImage(
+                                        image:AssetImage('assets/images/footballone.jpg'),
+                                      ),
+                                    )
+                                ),
+                                Container(
+                                    height:230.0,
+                                    alignment:Alignment.bottomCenter,
+                                    child:Text(
+                                      'Tomorrow Matches',
+                                      style:TextStyle(
+                                          fontWeight:FontWeight.normal,
+                                          color: Colors.red,
+                                          fontSize:15.0
+                                      ),
+                                    )
+                                )
+                              ],
+                            ),
+                          ),
+                        )
                     ),
                   ],
                 ),
-
               ],
             ),
           ),
         ),
         //body:Today()
-      )
-
-    );
+      );
   }
 }
 
